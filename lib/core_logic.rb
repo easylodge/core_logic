@@ -1,5 +1,13 @@
 require 'rest-client'
-require 'corelogic/'
+require 'corelogic/errors'
+require 'corelogic/railtie'
+require 'corelogic/utilities'
+require 'corelogic/version'
+require 'corelogic/modules/urls'
+require 'corelogic/objects/authorization'
+require 'corelogic/objects/base'
+require 'corelogic/objects/property'
+require 'corelogic/objects/search'
 
 
 class Corelogic
