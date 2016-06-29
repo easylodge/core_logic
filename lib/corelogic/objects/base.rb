@@ -14,7 +14,7 @@ class CorelogicBaseObject
   def self.init_get_request(url, data = {})
     result = nil
     begin
-      response =  RestClient.get "#{Urls::BASE_URL}#{url}" , data,  :Authorization  => "Bearer #{CorelogicAuthorization.token}", :content_type => :json, :accept => :json
+      response =  RestClient.get "#{url}" , data,  :Authorization  => "Bearer #{CorelogicAuthorization.token}", :content_type => :json, :accept => :json
       unless (response.status == 200 || response.status == 201)
         http_rescue(response)
       end
@@ -36,9 +36,9 @@ class CorelogicBaseObject
     result = nil
     begin
       if !json
-        response =  RestClient.post "#{Urls::BASE_URL}#{url}" , data,  :Authorization  => "Bearer #{CorelogicAuthorization.token}"
+        response =  RestClient.post "#{url}" , data,  :Authorization  => "Bearer #{CorelogicAuthorization.token}"
       else
-        response =  RestClient.post "#{Urls::BASE_URL}#{url}" , data.to_json,  :Authorization  => "Bearer #{CorelogicAuthorization.token}", :content_type => :json, :accept => :json
+        response =  RestClient.post "#{url}" , data.to_json,  :Authorization  => "Bearer #{CorelogicAuthorization.token}", :content_type => :json, :accept => :json
 
       end
       unless (response.status == 200 || response.status == 201)
@@ -61,7 +61,7 @@ class CorelogicBaseObject
   def self.init_put_request(url, data = {} )
     result = nil
     begin
-      response =  RestClient.put "#{Urls::BASE_URL}#{url}" , data,  :Authorization  => "Bearer #{CorelogicAuthorization.token}"
+      response =  RestClient.put "#{url}" , data,  :Authorization  => "Bearer #{CorelogicAuthorization.token}"
       unless (response.code == 200 || response.code == 201)
         http_rescue(response)
       end
@@ -82,7 +82,7 @@ class CorelogicBaseObject
   def self.init_delete_request(url)
     result = nil
     begin
-      response =  RestClient.delete "#{Urls::BASE_URL}#{url}" ,  :Authorization  => "Bearer #{CorelogicAuthorization.token}"
+      response =  RestClient.delete "#{url}" ,  :Authorization  => "Bearer #{CorelogicAuthorization.token}"
       unless (response.status == 200 || response.status == 201)
         http_rescue(response)
       end
