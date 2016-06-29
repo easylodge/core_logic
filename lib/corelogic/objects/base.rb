@@ -66,8 +66,8 @@ class CorelogicBaseObject
         http_rescue(response)
       end
       result = JSON.parse(response.body)
-      unless(result['status'] != 0 )
-        server_rescue(result)
+      if(result['messages'])
+        server_rescue(result['messages'].first)
       end
 
     rescue JSON::ParserError => json_err
@@ -101,7 +101,7 @@ class CorelogicBaseObject
   end
 
   def self.server_rescue result
-    raise CorelogicServerError.new(result), "Server Message: #{result['message']}"
+    raise CorelogicServerError.new(result), "Response code: #{result['code']}; Server Message: #{result['message']}"
   end
 
   def self.http_rescue response
