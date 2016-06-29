@@ -2,18 +2,13 @@ require 'corelogic/objects/base.rb'
 
 class Authorization < CorelogicBaseObject
 
-  def self.refresh_token
-
-  end
-
-  def self.get_token
+  def self.set_token
     response = RestClient.get "#{Urls::BASE_URL}#{Urls::AUTH_PATH}", client_id:  Corelogic.new.client_id, client_secret: Corelogic.new.client_secret, grant_type: "client_credentials"
-    session[:cl_access_token] = response["access_token"]
+    cookies[:cl_access_token] = { value: response["access_token"], expires: Time.now + response["expires_in"] }
+    cookies[:cl_access_token]
   end
 
   def self.token
-    #check signature
-    #check if expiry time has elapsed
-    #If true, generate new token
+    cookies[:cl_access_token] || set_token
   end
 end

@@ -11,10 +11,10 @@ class CorelogicBaseObject
 
   protected
 
-  def self.init_get_request(core_logic_obj, url)
+  def self.init_get_request(url)
     result = nil
     begin
-      response =  RestClient.get "#{Urls::BASE_URL}#{url}" , :Authorization  => "Bearer #{core_logic_obj.access_token}", :content_type => :json, :accept => :json
+      response =  RestClient.get "#{Urls::BASE_URL}#{url}" , :Authorization  => "Bearer #{Authorization.token}", :content_type => :json, :accept => :json
       unless (response.status == 200 || response.status == 201)
         http_rescue(response)
       end
@@ -32,13 +32,13 @@ class CorelogicBaseObject
     return result
   end
 
-  def self.init_post_request(core_logic_obj, url, data = {}, json=false )
+  def self.init_post_request(url, data = {}, json=false )
     result = nil
     begin
       if !json
-        response =  RestClient.post "#{Urls::BASE_URL}#{url}" , data,  :Authorization  => "Bearer #{core_logic_obj.access_token}"
+        response =  RestClient.post "#{Urls::BASE_URL}#{url}" , data,  :Authorization  => "Bearer #{Authorization.token}"
       else
-        response =  RestClient.post "#{Urls::BASE_URL}#{url}" , data.to_json,  :Authorization  => "Bearer #{core_logic_obj.access_token}", :content_type => :json, :accept => :json
+        response =  RestClient.post "#{Urls::BASE_URL}#{url}" , data.to_json,  :Authorization  => "Bearer #{Authorization.token}", :content_type => :json, :accept => :json
 
       end
       unless (response.status == 200 || response.status == 201)
@@ -58,10 +58,10 @@ class CorelogicBaseObject
     return result
   end
 
-  def self.init_put_request(core_logic_obj, url, data = {} )
+  def self.init_put_request(url, data = {} )
     result = nil
     begin
-      response =  RestClient.put "#{Urls::BASE_URL}#{url}" , data,  :Authorization  => "Bearer #{core_logic_obj.access_token}"
+      response =  RestClient.put "#{Urls::BASE_URL}#{url}" , data,  :Authorization  => "Bearer #{Authorization.token}"
       unless (response.code == 200 || response.code == 201)
         http_rescue(response)
       end
@@ -79,10 +79,10 @@ class CorelogicBaseObject
     return result
   end
 
-  def self.init_delete_request(core_logic_obj, url)
+  def self.init_delete_request(url)
     result = nil
     begin
-      response =  RestClient.delete "#{Urls::BASE_URL}#{url}" ,  :Authorization  => "Bearer #{core_logic_obj.access_token}"
+      response =  RestClient.delete "#{Urls::BASE_URL}#{url}" ,  :Authorization  => "Bearer #{Authorization.token}"
       unless (response.status == 200 || response.status == 201)
         http_rescue(response)
       end
