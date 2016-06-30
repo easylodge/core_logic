@@ -1,13 +1,20 @@
+require 'active_record'
 require 'bundler/setup'
 Bundler.setup
 
-require 'corelogic'
+require 'core_logic'
 
 RSpec.configure do |config|
 
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  ActiveRecord::Base.establish_connection(
+      :adapter => 'sqlite3',
+      :database => ':memory:',
+  )
+  require 'schema'
 
   config.run_all_when_everything_filtered = true
 

@@ -1,4 +1,3 @@
-require 'core_logic'
 require 'rails'
 
 module Corelogic

@@ -1,16 +1,17 @@
 require 'rest-client'
 require 'corelogic/errors'
-require 'corelogic/railtie'
+require 'corelogic/railtie' if defined?(Rails)
 require 'corelogic/utilities'
 require 'corelogic/version'
-require 'corelogic/modules/urls'
+require 'corelogic/urls'
 require 'corelogic/objects/authorization'
 require 'corelogic/objects/base'
+require 'corelogic/objects/credential'
 require 'corelogic/objects/property'
 require 'corelogic/objects/search'
 
 
-class Corelogic
+class CoreLogic
 
   def initialize core_logic_client_id=nil, core_logic_client_secret=nil
     if core_logic_client_id.nil?

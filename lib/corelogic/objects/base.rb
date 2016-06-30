@@ -14,8 +14,14 @@ class CorelogicBaseObject
   def self.init_get_request(url, data = {})
     result = nil
     begin
-      response =  RestClient.get "#{url}" , data,  :Authorization  => "Bearer #{CorelogicAuthorization.token}", :content_type => :json, :accept => :json
-      unless (response.status == 200 || response.status == 201)
+      response = RestClient::Request.execute(method: :get, url: "#{url}",
+                                  headers: { accept: :json,
+                                             content_type: :json,
+                                             Authorization: "Bearer #{CorelogicAuthorization.token}",
+                                             params: data
+                                  }
+      )
+      unless (response.code == 200 || response.code == 201)
         http_rescue(response)
       end
       result = JSON.parse(response.body)
@@ -36,12 +42,22 @@ class CorelogicBaseObject
     result = nil
     begin
       if !json
-        response =  RestClient.post "#{url}" , data,  :Authorization  => "Bearer #{CorelogicAuthorization.token}"
+        response = RestClient::Request.execute(method: :post, url: "#{url}",
+                                               headers: {
+                                                   Authorization: "Bearer #{CorelogicAuthorization.token}",
+                                                   params: data
+                                               }
+        )
       else
-        response =  RestClient.post "#{url}" , data.to_json,  :Authorization  => "Bearer #{CorelogicAuthorization.token}", :content_type => :json, :accept => :json
-
+        response = RestClient::Request.execute(method: :post, url: "#{url}",
+                                               headers: { accept: :json,
+                                                          content_type: :json,
+                                                          Authorization: "Bearer #{CorelogicAuthorization.token}",
+                                                          params: data.to_json
+                                               }
+        )
       end
-      unless (response.status == 200 || response.status == 201)
+      unless (response.code == 200 || response.code == 201)
         http_rescue(response)
       end
       result = JSON.parse(response.body)
@@ -61,7 +77,12 @@ class CorelogicBaseObject
   def self.init_put_request(url, data = {} )
     result = nil
     begin
-      response =  RestClient.put "#{url}" , data,  :Authorization  => "Bearer #{CorelogicAuthorization.token}"
+      response = RestClient::Request.execute(method: :put, url: "#{url}",
+                                             headers: {
+                                                 Authorization: "Bearer #{CorelogicAuthorization.token}",
+                                                 params: data
+                                             }
+      )
       unless (response.code == 200 || response.code == 201)
         http_rescue(response)
       end
@@ -82,8 +103,12 @@ class CorelogicBaseObject
   def self.init_delete_request(url)
     result = nil
     begin
-      response =  RestClient.delete "#{url}" ,  :Authorization  => "Bearer #{CorelogicAuthorization.token}"
-      unless (response.status == 200 || response.status == 201)
+      response = RestClient::Request.execute(method: :delete, url: "#{url}",
+                                             headers: {
+                                                 Authorization: "Bearer #{CorelogicAuthorization.token}"
+                                             }
+      )
+      unless (response.code == 200 || response.code == 201)
         http_rescue(response)
       end
       result = JSON.parse(response.body)
