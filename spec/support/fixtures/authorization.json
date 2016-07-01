@@ -1,0 +1,8 @@
+{
+  "access_token": "fdi38adsvljas839.a893azQ38700.839238asdnsidfaeZTY",
+  "token_type": "bearer",
+  "expires_in": 43199,
+  "scope": "CRT MAP PTY SGT STS TTL",
+  "iss": "RPData.oauth2",
+  "env_access_restrict": true
+}

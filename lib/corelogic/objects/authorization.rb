@@ -11,6 +11,14 @@ class CorelogicAuthorization < CorelogicBaseObject
                                 }}
     )
     result = JSON.parse(response.body)
+
+    if(result['messages'])
+      server_rescue(result['messages'].first)
+    end
+
+  rescue JSON::ParserError => json_err
+    json_rescue(json_err, response)
+
     token = Corelogic::Credential.create!(access_token: result["access_token"], expiry_time: Time.now + result["expires_in"])
     token.access_token
   end

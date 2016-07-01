@@ -1,11 +1,12 @@
 require 'active_record'
 require 'bundler/setup'
+require 'webmock/rspec'
+WebMock.disable_net_connect!(:allow_localhost => true)
 Bundler.setup
 
 require 'core_logic'
 
 RSpec.configure do |config|
-
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end

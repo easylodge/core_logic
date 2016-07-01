@@ -1,16 +1,5 @@
 class CorelogicBaseObject
 
-  def initialize(core_logic_obj)
-    unless !core_logic_obj.nil?
-      raise ArgumentError, "Corelogic object cannot be nil!!"
-    end
-    @core_logic = core_logic_obj
-  end
-
-  attr_reader :core_logic
-
-  protected
-
   def self.init_get_request(url, data = {})
     result = nil
     begin
