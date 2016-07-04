@@ -18,12 +18,20 @@ describe CorelogicProperty do
         to_return(:status => 200, :body => @obj, :headers => {})
   end
 
-  before(:each) do
-    authenticate
-    property_detail
+  def property_search_by_point
+    @result = File.read(File.expand_path("../../spec/support/fixtures/not_found.json", __FILE__))
+    stub_request(:get, "https://property-sandbox-api.corelogic.asia/bsg-au/v2/search/point?lat=-33.9166&lon=151.2833").
+        with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer fdi38adsvljas839.a893azQ38700.839238asdnsidfaeZTY', 'Content-Type'=>'application/json', 'User-Agent'=>'Ruby'}).
+        to_return(:status => 200, :body => @result, :headers => {})
   end
 
+
   context ".detail" do
+    before(:each) do
+      authenticate
+      property_detail
+    end
+
     it "should return a valid property object", type: :request do
       expect(CorelogicProperty.detail(12)).not_to be_nil
       expect(CorelogicProperty.detail(12)).to eq(JSON.parse(@obj))
@@ -31,6 +39,14 @@ describe CorelogicProperty do
   end
 
   context ".search_by_point" do
+    before(:each) do
+      authenticate
+      property_search_by_point
+    end
 
+    it "should return a valid property object for the location point", type: :request do
+      expect(CorelogicProperty.search_by_point(151.28330, -33.91660)).not_to be_nil
+      expect(CorelogicProperty.search_by_point(151.28330, -33.91660)).to eq(JSON.parse(@result))
+    end
   end
 end
