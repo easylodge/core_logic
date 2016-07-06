@@ -1,0 +1,91 @@
+{
+  "property": {
+    "address": {
+      "councilArea": "Tuggeranong",
+      "singleLine": "1 Aardvark Street Kambah ACT 2902",
+      "startNumber": 1,
+      "street": {
+        "extension": "STREET",
+        "id": 1,
+        "locality": {
+          "id": 22464,
+          "name": "KAMBAH",
+          "postcode": {
+            "id": 1005957,
+            "name": "2902",
+            "singleLine": "2902 ACT",
+            "state": "ACT"
+          },
+          "singleLine": "Kambah ACT 2902"
+        },
+        "name": "AARDVARK"
+      }
+    },
+    "attributes": {
+      "bathrooms": 2,
+      "bedrooms": 3,
+      "carSpaces": 2,
+      "isCalculatedLandArea": true,
+      "landArea": 0,
+      "lockUpGarages": 1
+    },
+    "externalReferenceList": [
+      {
+        "type": "Map Reference",
+        "value": "UBD ACT: CAN77, L10"
+      }
+    ],
+    "featureList": [
+      {
+        "abbreviation": "ENS",
+        "id": 259992,
+        "name": "Ensuites",
+        "type": "Integer",
+        "value": "1"
+      },
+      {
+        "abbreviation": "LUG",
+        "id": 261521,
+        "name": "Lockup Garages",
+        "type": "Integer",
+        "value": "1"
+      },
+      {
+        "abbreviation": "",
+        "id": 261841,
+        "name": "Other Special Features",
+        "type": "String",
+        "value": "0"
+      }
+    ],
+    "id": 1,
+    "legal": {
+      "frontage": "0",
+      "realPropertyDescription": "BLOCK:TUGG:KAMB:000:0000",
+      "vgNumber": "I007032877"
+    },
+    "parcelList": [
+      {
+        "area": "",
+        "displayName": "Section/Block",
+        "landAuthority": "Tuggeranong"
+      }
+    ],
+    "propertySubType": "House: Dual Occupancy",
+    "propertySubTypeShort": "Dual Occupancy",
+    "propertyType": "HOUSE",
+    "site": {
+      "landUsePrimary": "",
+      "landUseSecondary": "",
+      "zoneCodeLocal": "",
+      "zoneDescriptionLocal": ""
+    },
+    "title": {
+      "titleIndicator": "No More Titles"
+    }
+  },
+  "systemInfo": {
+    "instanceName": "60:8080",
+    "requestDate": "2016-07-01T17:27:48.755+10:00"
+  }
+}

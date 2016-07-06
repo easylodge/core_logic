@@ -10,11 +10,14 @@ Gem::Specification.new do |gem|
   gem.email         = ["info@shuntyard.co.za"]
   gem.description   = %q{Australian property information service}
   gem.summary       = %q{3rd party service for Australian property information}
+  gem.license       = 'MIT'
 
   #Dependencies
   gem.add_dependency "rest-client", '~> 1.8'
+  gem.add_development_dependency "activerecord", "~> 4.0.0"
 
   #Dev dependencies
+  gem.add_development_dependency "sqlite3"
   gem.add_development_dependency "bundler", "~> 1.11"
   gem.add_development_dependency "rspec-rails", '~> 3.0.0.beta1'
   gem.add_development_dependency 'rails', '~> 4.0.0'

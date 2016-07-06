@@ -1,4 +1,4 @@
-require 'paystack/errors.rb'
+require 'corelogic/errors.rb'
 
 class Utilities
 
