@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Corelogic::VERSION
   gem.authors       = ["Shuntyard"]
   gem.email         = ["info@shuntyard.co.za"]
-  gem.description   = %q{Property info Au}
-  gem.summary       = %q{Property info Au, pricing etc}
+  gem.description   = %q{Australian property information service}
+  gem.summary       = %q{3rd party service for Australian property information}
   gem.license       = 'MIT'
 
   #Dependencies
