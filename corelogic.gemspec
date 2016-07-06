@@ -1,15 +1,15 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'glassguide/version'
+require 'corelogic/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "corelogic"
   gem.version       = Corelogic::VERSION
   gem.authors       = ["Shuntyard"]
   gem.email         = ["info@shuntyard.co.za"]
-  gem.description   = %q{Property info Au}
-  gem.summary       = %q{Property info Au, pricing etc}
+  gem.description   = %q{Australia property information service}
+  gem.summary       = %q{3rd party service for Australian property information}
 
   #Dependencies
   gem.add_dependency "rest-client", '~> 1.8'
