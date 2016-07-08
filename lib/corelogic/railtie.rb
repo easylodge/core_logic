@@ -2,7 +2,7 @@ require 'rails'
 
 module Corelogic
   class Railtie < Rails::Railtie
-    railtie_name :core_logic
+    railtie_name :corelogic
 
     rake_tasks do
       load "tasks/corelogic.rake"
