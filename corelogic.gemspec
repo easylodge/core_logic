@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Shuntyard"]
   gem.email         = ["info@shuntyard.co.za"]
   gem.description   = %q{Australian property information service}
-  gem.summary       = %q{3rd party service for Australian property information}
+  gem.summary       = %q{Integration into CoreLogic Australian property information service, using a JSON API.}
   gem.license       = 'MIT'
 
   #Dependencies

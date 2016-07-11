@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CoreLogic::Credential do
+describe Corelogic::Credential do
 
   context "attrs" do
     it { expect(subject).to respond_to :id } 
