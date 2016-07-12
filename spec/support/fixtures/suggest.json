@@ -1,0 +1,16 @@
+{
+  "suggestions": [
+    {
+      "countryId": 113,
+      "isBodyCorporate": false,
+      "isUnit": false,
+      "stateId": 11,
+      "suggestion": "NSW",
+      "suggestionType": "state"
+    }
+  ],
+  "systemInfo": {
+    "instanceName": "60:8080",
+    "requestDate": "2016-07-12T21:03:25.996+10:00"
+  }
+}
