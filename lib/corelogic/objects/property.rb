@@ -13,4 +13,9 @@ class CorelogicProperty < CorelogicBaseObject
     data = { lon: longitude, lat: latitude }
     init_get_request("#{Corelogic::Urls::BASE_URL}#{Corelogic::Urls::PROPERTY_PATH}#{Corelogic::Urls::POINT_SEARCH_PATH}", data)
   end
+
+  def self.profile_pdf(params={})
+    data = { propertyProfileInputParams: params }
+    init_post_request("#{Corelogic::Urls::BASE_URL}#{Corelogic::Urls::PROPERTY_PATH}/v1/profile/property.pdf", data )
+  end
 end
