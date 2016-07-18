@@ -14,6 +14,11 @@ class CorelogicProperty < CorelogicBaseObject
     init_get_request("#{Corelogic::Urls::BASE_URL}#{Corelogic::Urls::PROPERTY_PATH}#{Corelogic::Urls::POINT_SEARCH_PATH}", data)
   end
 
+  def self.profile_pdf(params={})
+    data = { propertyProfileInputParams: params }
+    init_post_request("#{Corelogic::Urls::BASE_URL}#{Corelogic::Urls::PROPERTY_PATH}/v1/profile/property.pdf", data )
+  end
+
   def self.suggestion_service(q, limit=nil, include_units=nil, include_body_corporates=nil, return_suggestion=nil)
     data = {suggestionTypes: "address, street, locality, postcode, territorialAuthority, councilArea, state, country",
             q: q, limit: limit, includeUnits: include_units, includeBodyCorporates: include_body_corporates, returnSuggestion: return_suggestion}
