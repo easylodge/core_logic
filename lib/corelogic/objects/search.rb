@@ -9,7 +9,6 @@ class CorelogicSearch < CorelogicBaseObject
 
   def self.find_by_address(client_name=nil, match_profile_id=nil, q)
     property = match_address(client_name, match_profile_id, q)
-    puts property
     property_id = property["matchDetails"]["propertyId"]
     CorelogicProperty.detail(property_id)
   end
