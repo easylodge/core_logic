@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    corelogic (0.0.4)
+    corelogic (0.0.5)
       rest-client (~> 1.8)
 
 GEM
