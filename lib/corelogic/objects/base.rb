@@ -14,8 +14,8 @@ class CorelogicBaseObject
         http_rescue(response)
       end
       result = JSON.parse(response.body)
-      unless(result['status'] != 0 )
-        server_rescue(result)
+      if(result['messages'])
+        server_rescue(result['messages'].first)
       end
 
     rescue JSON::ParserError => json_err
@@ -50,8 +50,8 @@ class CorelogicBaseObject
         http_rescue(response)
       end
       result = JSON.parse(response.body)
-      unless(result['status'] != 0 )
-        server_rescue(result)
+      if(result['messages'])
+        server_rescue(result['messages'].first)
       end
 
     rescue JSON::ParserError => json_err
@@ -101,8 +101,8 @@ class CorelogicBaseObject
         http_rescue(response)
       end
       result = JSON.parse(response.body)
-      unless(result['status'] != 0 )
-        server_rescue(result)
+      if(result['messages'])
+        server_rescue(result['messages'].first)
       end
 
     rescue JSON::ParserError => json_err
