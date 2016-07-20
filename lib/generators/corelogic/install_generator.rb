@@ -4,10 +4,10 @@ module Corelogic
       include Rails::Generators::Migration
       
       source_root File.expand_path("../../templates", __FILE__)
-      desc "Sets up the Core Logic Configuration File"
+      desc "Sets up the Core Logic env variables File"
 
       def copy_config
-        template "corelogic_config.yml", "config/corelogic_config.yml"
+        template ".env", "#{Rails.root}/.env"
       end
 
       def self.next_migration_number(dirname)
