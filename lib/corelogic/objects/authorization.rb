@@ -3,7 +3,7 @@ require 'corelogic/objects/base.rb'
 class CorelogicAuthorization < CorelogicBaseObject
 
   def self.set_token
-    Corelogic::Credential.destroy_all
+    Corelogic::Credential.delete_all
     response =  RestClient::Request.execute(method: :get, url: "#{Corelogic::Urls::AUTH_BASE_URL}",
                                 headers: { accept: "*/*", params: { client_id:  CoreLogic.new.client_id,
                                                                     client_secret: CoreLogic.new.client_secret,
