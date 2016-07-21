@@ -17,6 +17,8 @@ class CorelogicBaseObject
       if(result['messages'])
         server_rescue(result['messages'].first)
       end
+    rescue => e
+      Utilities.server_error_handler(e)
 
     rescue JSON::ParserError => json_err
       json_rescue(json_err, response)
@@ -54,6 +56,9 @@ class CorelogicBaseObject
         server_rescue(result['messages'].first)
       end
 
+    rescue => e
+      Utilities.server_error_handler(e)
+
     rescue JSON::ParserError => json_err
       json_rescue(json_err, response)
 
@@ -80,6 +85,9 @@ class CorelogicBaseObject
         server_rescue(result['messages'].first)
       end
 
+    rescue => e
+      Utilities.server_error_handler(e)
+
     rescue JSON::ParserError => json_err
       json_rescue(json_err, response)
 
@@ -104,6 +112,9 @@ class CorelogicBaseObject
       if(result['messages'])
         server_rescue(result['messages'].first)
       end
+
+    rescue => e
+      Utilities.server_error_handler(e)
 
     rescue JSON::ParserError => json_err
       json_rescue(json_err, response)
