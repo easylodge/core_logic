@@ -114,11 +114,11 @@ class CorelogicBaseObject
   end
 
   def self.server_rescue result
-    raise CorelogicServerError.new(result), "Response code: #{result['code']}; Server Message: #{result['message']}; Type: #{result['type']}"
+    render :json => "Response code: #{result['code']}; Server Message: #{result['message']}; Type: #{result['type']}"
   end
 
   def self.http_rescue e
-    raise CorelogicServerError.new(e), "HTTP Code #{e.response.code}: #{e.response.message}"
+    render :json => "HTTP Code #{e.response.code}: #{e.response.message}"
   end
 
   def self.json_rescue error, response
