@@ -25,6 +25,6 @@ class CorelogicAuthorization < CorelogicBaseObject
 
   def self.token
     credential = Corelogic::Credential.first
-    (credential && (Time.now > credential.expiry_time)) ? set_token : credential.access_token
+    (credential && (Time.now <= credential.expiry_time)) ? credential.access_token : set_token
   end
 end
