@@ -118,7 +118,7 @@ class CorelogicBaseObject
   end
 
   def self.http_rescue e
-    raise CorelogicServerError.new(e), "HTTP Code #{e.response.code}: #{e.response.message}"
+    raise CorelogicServerError.new(e), "HTTP Code #{e.response['code']}: #{e.response['message']}"
   end
 
   def self.json_rescue error, response
