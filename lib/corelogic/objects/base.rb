@@ -115,7 +115,7 @@ class CorelogicBaseObject
   end
 
   def self.server_rescue result
-    raise CorelogicServerError.new(result), "Response code: #{result['code']}; Server Message: #{result['message']}"
+    raise CorelogicServerError.new(result), "Response code: #{result['code']}; Server Message: #{result['message']}; Type: #{result['type']}"
   end
 
   def self.http_rescue response

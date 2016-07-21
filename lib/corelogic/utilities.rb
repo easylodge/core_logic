@@ -19,7 +19,7 @@ class Utilities
         when 500, 501,502,503,504
           raise error, "HTTP Code #{e.response['code']}: Request could not be fulfilled due to an error on Core Logic's end. This shouldn't happen so please report as soon as you encounter any instance of this."
         else
-          raise error, "HTTP Code #{e.response['code']}: #{e.response['body']}"
+          raise error, "HTTP Code #{e.response['code']}: #{e.response['message']}; Type: #{e.response['type']}"
       end
     end
 
