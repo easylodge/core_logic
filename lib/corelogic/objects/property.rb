@@ -4,7 +4,7 @@ class CorelogicProperty < CorelogicBaseObject
 
   def self.detail(property_id)
     data = {
-        returnFields: "site, title, address, attributes, legal, avmDetailList, contactList, currentOwnershipList, developmentApplicationList, externalReferenceList, featureList, forRentPropertyCampaignList, saleList, parcelList, forRentPropertyCampaignList, forSaleAgencyCampaignList"
+        returnFields: "site, title, address, attributes, legal, avmDetailList, contactList, propertyPhotoList, currentOwnershipList, developmentApplicationList, externalReferenceList, featureList, forRentPropertyCampaignList, saleList, parcelList, forRentPropertyCampaignList, forSaleAgencyCampaignList"
     }
     init_get_request("#{Corelogic::Urls::BASE_URL}#{Corelogic::Urls::PROPERTY_PATH}/v1/property/#{property_id}.json", data )
   end
