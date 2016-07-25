@@ -24,7 +24,7 @@ Then run migrations:
 
     rake db:migrate
 
-Complete the Core logic details in config/corelogic_config.yml
+Setup Env variables in the .env file
 
 ## Usage
 
