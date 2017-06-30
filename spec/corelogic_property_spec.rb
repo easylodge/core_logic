@@ -52,8 +52,7 @@ describe CorelogicProperty do
     end
 
     it "should return a valid property object for the location point", type: :request do
-      expect(CorelogicProperty.search_by_point(151.28330, -33.91660)).not_to be_nil
-      expect(CorelogicProperty.search_by_point(151.28330, -33.91660)).to eq(JSON.parse(@result))
+      expect { CorelogicProperty.search_by_point(151.28330, -33.91660) }.to raise_error(CorelogicServerError, "HTTP Code 402: No data found for your search.; Type: INFORMATION")
     end
   end
 

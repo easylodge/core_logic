@@ -10,13 +10,12 @@ class CorelogicBaseObject
                                              params: data
                                   }
       )
-      unless (response.code == 200 || response.code == 201)
-        http_rescue(response)
-      end
       result = JSON.parse(response.body)
-      unless(result['status'] != 0 )
-        server_rescue(result)
+      if(result['messages'])
+        server_rescue(result['messages'].first)
       end
+    rescue => e
+      http_rescue(e)
 
     rescue JSON::ParserError => json_err
       json_rescue(json_err, response)
@@ -46,13 +45,13 @@ class CorelogicBaseObject
                                                }
         )
       end
-      unless (response.code == 200 || response.code == 201)
-        http_rescue(response)
-      end
       result = JSON.parse(response.body)
-      unless(result['status'] != 0 )
-        server_rescue(result)
+      if(result['messages'])
+        server_rescue(result['messages'].first)
       end
+
+    rescue => e
+      http_rescue(e)
 
     rescue JSON::ParserError => json_err
       json_rescue(json_err, response)
@@ -72,13 +71,13 @@ class CorelogicBaseObject
                                                  params: data
                                              }
       )
-      unless (response.code == 200 || response.code == 201)
-        http_rescue(response)
-      end
       result = JSON.parse(response.body)
       if(result['messages'])
         server_rescue(result['messages'].first)
       end
+
+    rescue => e
+      http_rescue(e)
 
     rescue JSON::ParserError => json_err
       json_rescue(json_err, response)
@@ -97,13 +96,13 @@ class CorelogicBaseObject
                                                  Authorization: "Bearer #{CorelogicAuthorization.token}"
                                              }
       )
-      unless (response.code == 200 || response.code == 201)
-        http_rescue(response)
-      end
       result = JSON.parse(response.body)
-      unless(result['status'] != 0 )
-        server_rescue(result)
+      if(result['messages'])
+        server_rescue(result['messages'].first)
       end
+
+    rescue => e
+      http_rescue(e)
 
     rescue JSON::ParserError => json_err
       json_rescue(json_err, response)
@@ -115,11 +114,11 @@ class CorelogicBaseObject
   end
 
   def self.server_rescue result
-    raise CorelogicServerError.new(result), "Response code: #{result['code']}; Server Message: #{result['message']}"
+    raise CorelogicServerError.new(result), "Response code: #{result['code']}; Server Message: #{result['message']}; Type: #{result['type']}"
   end
 
-  def self.http_rescue response
-    raise CorelogicServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
+  def self.http_rescue e
+    raise CorelogicServerError.new(e), "HTTP Code #{e.response['code']}: #{e.response['message']}"
   end
 
   def self.json_rescue error, response

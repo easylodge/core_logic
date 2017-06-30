@@ -1,8 +1,7 @@
 class CreateCorelogicCredentials < ActiveRecord::Migration
   def self.up
-    create_table :corelogic_credentials, id: false  do |t|
-      t.integer :id
-      t.string :access_token
+    create_table :corelogic_credentials  do |t|
+      t.text :access_token
       t.datetime :expiry_time
     end
   end
