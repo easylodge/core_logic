@@ -4,11 +4,11 @@ require 'corelogic/railtie' if defined?(Rails)
 require 'corelogic/utilities'
 require 'corelogic/version'
 require 'corelogic/urls'
-require 'corelogic/objects/authorization'
-require 'corelogic/objects/base'
-require 'corelogic/objects/credential'
-require 'corelogic/objects/property'
-require 'corelogic/objects/search'
+require 'corelogic/authorization'
+require 'corelogic/base'
+require 'corelogic/credential'
+require 'corelogic/property'
+require 'corelogic/search'
 
 
 class CoreLogic

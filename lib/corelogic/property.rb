@@ -1,4 +1,4 @@
-require 'corelogic/objects/base.rb'
+require 'corelogic/base.rb'
 
 class CorelogicProperty < CorelogicBaseObject
 
