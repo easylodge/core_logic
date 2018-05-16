@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe CorelogicAuthorization do
+describe Corelogic::Authorization do
 
   before(:each) do
     @obj = File.read(File.expand_path("../../spec/support/fixtures/credentials.json", __FILE__))
@@ -11,13 +11,13 @@ describe CorelogicAuthorization do
 
   context ".set_token" do
     it "should set up the access token" do
-      expect(CorelogicAuthorization.set_token).to eq(Corelogic::Credential.first.access_token)
+      expect(Corelogic::Authorization.set_token).to eq(Corelogic::Credential.first.access_token)
     end
   end
 
   context ".token" do
     it "should fetch the token" do
-      expect(CorelogicAuthorization.token).to eq(JSON.parse(@obj)["access_token"])
+      expect(Corelogic::Authorization.token).to eq(JSON.parse(@obj)["access_token"])
     end
   end
 end
