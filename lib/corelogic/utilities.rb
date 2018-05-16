@@ -1,7 +1,7 @@
 require 'corelogic/errors.rb'
 
 module Corelogic
-  class Corelogic::Utilities
+  class Utilities
 
     def self.server_error_handler(e)
 

@@ -7,11 +7,4 @@ module Corelogic
 
     attr_reader :response
   end
-
-  class CorelogicBadIdError < StandardError
-  end
-
-  class CorelogicBadSecretError < StandardError
-  end
-
 end
