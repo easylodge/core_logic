@@ -3,8 +3,7 @@ require 'corelogic/base_object'
 module Corelogic
   class Authorization
 
-    def self.set_token
-      Corelogic::Credential.delete_all
+    def self.token
       response =  RestClient::Request.execute(method: :get, url: "#{Corelogic::Urls::AUTH_BASE_URL}",
                                               headers: { accept: "*/*", params: { client_id:  Configuration.new.client_id,
                                                                                   client_secret: Configuration.new.client_secret,
@@ -17,16 +16,10 @@ module Corelogic
         server_rescue(result['messages'].first)
       end
 
-      token = Corelogic::Credential.create!(access_token: result["access_token"], expiry_time: Time.now + result["expires_in"])
-      token.access_token
+      result["access_token"]
 
     rescue JSON::ParserError => json_err
       json_rescue(json_err, response)
-    end
-
-    def self.token
-      credential = Corelogic::Credential.first
-      (credential && (Time.now <= credential.expiry_time)) ? credential.access_token : set_token
     end
   end
 end

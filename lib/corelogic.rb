@@ -7,7 +7,6 @@ require 'corelogic/urls'
 require 'corelogic/configuration'
 require 'corelogic/authorization'
 require 'corelogic/base_object'
-require 'corelogic/credential'
 require 'corelogic/property'
 require 'corelogic/search'
 
