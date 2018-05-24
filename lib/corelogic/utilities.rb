@@ -1,14 +1,14 @@
 require 'corelogic/errors.rb'
 
-class Utilities
+module Corelogic
+  class Utilities
 
     def self.server_error_handler(e)
 
       if(e.response == nil)
-        raise e
-        return
+        raise e and return
       end
-      error = CorelogicServerError.new(e.response);
+      error = Corelogic::ServerError.new(e.response);
       case e.response['code']
         when 400
           raise error, "HTTP Code 400: Bad Request. "
@@ -23,4 +23,6 @@ class Utilities
       end
     end
 
+  end
 end
+

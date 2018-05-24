@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe CorelogicSearch do
+describe Corelogic::Search do
 
   def authenticate
     @credentials = File.read(File.expand_path("../../spec/support/fixtures/credentials.json", __FILE__))
@@ -24,7 +24,8 @@ describe CorelogicSearch do
     stub_request(:get, "https://search-sandbox-api.corelogic.asia/search/au/matcher/address?clientName=&matchProfileId=&q=488%20George%20Street,%20Sydney,%20NSW,%202000,%20Australia").
         with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer fdi38adsvljas839.a893azQ38700.839238asdnsidfaeZTY', 'Content-Type'=>'application/json', 'User-Agent'=>'Ruby'}).
         to_return(:status => 200, :body => @obj, :headers => {})
-    stub_request(:get, "https://property-sandbox-api.corelogic.asia/bsg-au/v1/property17158755.json?returnFields=site,%20title,%20address,%20attributes,%20legal,%20avmDetailList,%20contactList,%20currentOwnershipList,%20developmentApplicationList,%20externalReferenceList,%20featureList,%20forRentPropertyCampaignList,%20saleList,%20parcelList,%20forRentPropertyCampaignList,%20forSaleAgencyCampaignList").
+
+    stub_request(:get, "https://property-sandbox-api.corelogic.asia/bsg-au/v1/property/17158755.json?returnFields=site,%20title,%20address,%20attributes,%20legal,%20contactList,%20propertyPhotoList,%20currentOwnershipList,%20featureList,%20forSalePropertyCampaignList,%20saleList,%20forRentPropertyCampaignList").
         with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer fdi38adsvljas839.a893azQ38700.839238asdnsidfaeZTY', 'Content-Type'=>'application/json', 'User-Agent'=>'Ruby'}).
         to_return(:status => 200, :body => @property, :headers => {})
   end
@@ -40,8 +41,8 @@ describe CorelogicSearch do
     end
 
     it "returns the id of a property that matches the address passed in" do
-      expect(CorelogicSearch.match_address(@address)).not_to be_nil
-      expect(CorelogicSearch.match_address(@address)).to eq(JSON.parse(@obj))
+      expect(Corelogic::Search.match_address(@address)).not_to be_nil
+      expect(Corelogic::Search.match_address(@address)).to eq(JSON.parse(@obj))
     end
   end
 
@@ -51,8 +52,8 @@ describe CorelogicSearch do
     end
 
     it "returns the details of a property that matches the address passed in" do
-      expect(CorelogicSearch.find_by_address(@address)).not_to be_nil
-      expect(CorelogicSearch.find_by_address(@address)).to eq(JSON.parse(@property))
+      expect(Corelogic::Search.find_by_address(@address)).not_to be_nil
+      expect(Corelogic::Search.find_by_address(@address)).to eq(JSON.parse(@property))
     end
   end
 
