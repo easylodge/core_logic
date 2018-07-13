@@ -5,8 +5,8 @@ module Corelogic
 
     def self.token
       response =  RestClient::Request.execute(method: :get, url: "#{Corelogic::Urls::AUTH_BASE_URL}",
-                                              headers: { accept: "*/*", params: { client_id:  Configuration.new.client_id,
-                                                                                  client_secret: Configuration.new.client_secret,
+                                              headers: { accept: "*/*", params: { client_id:  self.configuration.client_id,
+                                                                                  client_secret: self.configuration.client_secret,
                                                                                   grant_type: "client_credentials"
                                               }}
       )
