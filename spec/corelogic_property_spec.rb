@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe CorelogicProperty do
+describe Corelogic::Property do
 
   def authenticate
     @credentials =  File.read(File.expand_path("../../spec/support/fixtures/credentials.json", __FILE__))
@@ -13,7 +13,7 @@ describe CorelogicProperty do
   def property_detail
     @obj = File.read(File.expand_path("../../spec/support/fixtures/property.json", __FILE__))
 
-    stub_request(:get, "#{Corelogic::Urls::BASE_URL}#{Corelogic::Urls::PROPERTY_PATH}/v1/property12.json?returnFields=site,%20title,%20address,%20attributes,%20legal,%20avmDetailList,%20contactList,%20currentOwnershipList,%20developmentApplicationList,%20externalReferenceList,%20featureList,%20forRentPropertyCampaignList,%20saleList,%20parcelList,%20forRentPropertyCampaignList,%20forSaleAgencyCampaignList").
+    stub_request(:get, "#{Corelogic::Urls::BASE_URL}#{Corelogic::Urls::PROPERTY_PATH}/v1/property/12.json?returnFields=site,%20title,%20address,%20attributes,%20legal,%20contactList,%20propertyPhotoList,%20currentOwnershipList,%20featureList,%20forSalePropertyCampaignList,%20saleList,%20forRentPropertyCampaignList").
         with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer fdi38adsvljas839.a893azQ38700.839238asdnsidfaeZTY', 'Content-Type'=>'application/json', 'User-Agent'=>'Ruby'}).
         to_return(:status => 200, :body => @obj, :headers => {})
   end
@@ -40,8 +40,8 @@ describe CorelogicProperty do
     end
 
     it "should return a valid property object", type: :request do
-      expect(CorelogicProperty.detail(12)).not_to be_nil
-      expect(CorelogicProperty.detail(12)).to eq(JSON.parse(@obj))
+      expect(Corelogic::Property.detail(12)).not_to be_nil
+      expect(Corelogic::Property.detail(12)).to eq(JSON.parse(@obj))
     end
   end
 
@@ -52,8 +52,7 @@ describe CorelogicProperty do
     end
 
     it "should return a valid property object for the location point", type: :request do
-      expect(CorelogicProperty.search_by_point(151.28330, -33.91660)).not_to be_nil
-      expect(CorelogicProperty.search_by_point(151.28330, -33.91660)).to eq(JSON.parse(@result))
+      expect { Corelogic::Property.search_by_point(151.28330, -33.91660) }.to raise_error(Corelogic::ServerError, "HTTP Code 402: No data found for your search.")
     end
   end
 
@@ -64,8 +63,8 @@ describe CorelogicProperty do
     end
 
     it "should return a suggestion object for the query", type: :request do
-      expect(CorelogicProperty.suggestion_service("NSW")).not_to be_nil
-      expect(CorelogicProperty.suggestion_service("NSW")).to eq(JSON.parse(@suggestion))
+      expect(Corelogic::Property.suggestion_service("NSW")).not_to be_nil
+      expect(Corelogic::Property.suggestion_service("NSW")).to eq(JSON.parse(@suggestion))
     end
   end
 end

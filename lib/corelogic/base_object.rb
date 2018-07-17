@@ -53,6 +53,7 @@ module Corelogic
       begin
         response = RestClient::Request.execute(method: :put, url: "#{url}",
                                                headers: { Authorization: "Bearer #{Corelogic::Authorization.token(data[:credentials])}", params: data.except!(:credentials) })
+
         result = JSON.parse(response.body)
         if(result['messages'])
           server_rescue(result['messages'].first)

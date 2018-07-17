@@ -4,22 +4,11 @@ module Corelogic
       include Rails::Generators::Migration
       
       source_root File.expand_path("../../templates", __FILE__)
-      desc "Sets up the Core Logic Configuration File"
+      desc "Sets up the Corelogic configuration"
 
       def copy_config
-        template "corelogic_config.yml", "config/corelogic_config.yml"
-      end
-
-      def self.next_migration_number(dirname)
-        if ActiveRecord::Base.timestamped_migrations
-          Time.new.utc.strftime("%Y%m%d%H%M%S")
-        else
-          "%.3d" % (current_migration_number(dirname) + 1)
-        end
-      end
-      
-      def create_migration_file
-        migration_template "migration_corelogic_credentials.rb", "db/migrate/create_corelogic_credentials.rb"
+        template ".env", "#{Rails.root}/.env"
+        template "corelogic.rb", "config/initializers/corelogic.rb"
       end
     end
   end
