@@ -1,0 +1,29 @@
+module Corelogic
+  class Property < BaseObject
+
+    def self.detail(property_id, credentials=[])
+      data = {
+          credentials: credentials,
+          returnFields: "site, title, address, attributes, legal, contactList, propertyPhotoList, currentOwnershipList, featureList, forSalePropertyCampaignList, saleList, forRentPropertyCampaignList"
+      }
+      init_get_request("#{Corelogic::Urls::BASE_URL}#{Corelogic::Urls::PROPERTY_PATH}/v1/property/#{property_id}.json", data )
+    end
+
+    def self.search_by_point(longitude, latitude, credentials=[])
+      data = { lon: longitude, lat: latitude, credentials: credentials }
+      init_get_request("#{Corelogic::Urls::BASE_URL}#{Corelogic::Urls::PROPERTY_PATH}#{Corelogic::Urls::POINT_SEARCH_PATH}", data)
+    end
+
+    def self.profile_pdf(params={}, credentials=[])
+      data = { propertyProfileInputParams: params, credentials: credentials }
+      init_post_request("#{Corelogic::Urls::BASE_URL}#{Corelogic::Urls::PROPERTY_PATH}/v1/profile/property.pdf", data )
+    end
+
+    def self.suggestion_service(q, credentials=[], limit=nil, include_units=nil, include_body_corporates=nil, return_suggestion=nil)
+      data = {suggestionTypes: "address, street, locality, postcode, territorialAuthority, councilArea, state, country",
+              q: q, credentials: credentials, limit: limit, includeUnits: include_units, includeBodyCorporates: include_body_corporates, returnSuggestion: return_suggestion}
+      init_get_request("#{Corelogic::Urls::BASE_URL}#{Corelogic::Urls::PROPERTY_PATH}/v1/suggest.json", data)
+    end
+  end
+
+end
